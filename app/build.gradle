@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'blockcanaryex'
+apply plugin: 'android-aspectjx'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.hw.modularization"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+        multiDexEnabled false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    if (!rootProject.ext.android.isModule) {
+        compile project(':module1')
+        compile project(':module2')
+    } else {
+        compile project(':library')
+    }
+    debugCompile rootProject.ext.dependencies["blockCanaryExDebug"]
+    releaseCompile rootProject.ext.dependencies["blockCanaryExRelease"]
+    testCompile rootProject.ext.dependencies["blockCanaryExTest"]
+
+    testCompile 'junit:junit:4.12'
+}

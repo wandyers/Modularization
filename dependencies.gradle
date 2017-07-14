@@ -1,0 +1,90 @@
+def supportVersion = "25.3.1"
+def rxBindingVersion = "0.4.0"
+def retrofitVersion = "2.2.0"
+def okHttpVersion = "3.8.1"
+def okioVersion = "1.13.0"
+def stethoVersion = "1.5.0"
+def butterKnifeVersion = "8.7.0"
+def daggerVersion = "2.8"
+def gsonVersion = "2.8.1"
+def rxJavaVersion = "2.1.1"
+def rxAndroidVersion = "2.0.1"
+def routerCompilerVersion = "1.1.2.1"
+def routerVersion = "1.2.1.1"
+def constraintLayoutVersion = "1.0.2"
+def retrofitGsonConverter = "2.2.0"
+def blockCanaryEx = "0.9.8.1"
+
+project.ext {
+    android = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.2",
+            applicationId    : "com.baronzhang.android.modularization",
+            minSdkVersion    : 15,
+            targetSdkVersion : 25,
+            versionCode      : 1,
+            versionName      : "1.0",
+            isModule         : true, //是否是独立模块开发
+            isDebug          : "true",//是否是调试模式
+            scheme           : "\"xpai\"" //应用scheme
+    ]
+
+    //依赖配置
+    dependencies = [
+            //android-support
+            "support-v4"                  : "com.android.support:support-v4:${supportVersion}",
+            "appcompat-v7"                : "com.android.support:appcompat-v7:${supportVersion}",
+            "design"                      : "com.android.support:design:${supportVersion}",
+            "recyclerview-v7"             : "com.android.support:recyclerview-v7:${supportVersion}",
+            "cardview-v7"                 : "com.android.support:cardview-v7:${supportVersion}",
+            "constraint-layout"           : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+
+            //java8-support
+            "stream"                      : "com.annimon:stream:1.0.8",
+
+            //rx
+            "rxjava"                      : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            "rxandroid"                   : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            "rxbinding"                   : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+            "rxbinding-support-v4"        : "com.jakewharton.rxbinding:rxbinding-support-v4:${rxBindingVersion}",
+            "rxbinding-appcompat-v7"      : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxBindingVersion}",
+            "rxbinding-design"            : "com.jakewharton.rxbinding:rxbinding-design:${rxBindingVersion}",
+            "rxbinding-recyclerview-v7"   : "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:${rxBindingVersion}",
+
+            //retrofit
+            "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "adapter-rxjava"              : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+
+            //dagger
+            "dagger"                      : "com.google.dagger:dagger:${daggerVersion}",
+            "dagger-compiler"             : "com.google.dagger:dagger-compiler:${daggerVersion}",
+
+            //router
+            "router"                      : "com.alibaba:arouter-api:${routerVersion}",
+            "router-compiler"             : "com.alibaba:arouter-compiler:${routerCompilerVersion}",
+
+            //butterKnife
+            "butterknife"                 : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            "butterknife-compiler"        : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+
+            //facebook
+            "stetho"                      : "com.facebook.stetho:stetho:${stethoVersion}",
+            "stetho-okhttp3"              : "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
+
+            //okHttp3
+            "okhttp3"                     : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            "okhttp3-logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            "okio"                        : "com.squareup.okio:okio:${okioVersion}",
+            //others
+//            "ormlite-android"             : "com.j256.ormlite:ormlite-android:5.0",
+            "retrofit2-gson-converter"    : "com.squareup.retrofit2:converter-gson:${retrofitGsonConverter}",
+            "gson"                        : "com.google.code.gson:gson:${gsonVersion}",
+            "multidex"                    : "com.android.support:multidex:1.0.1",
+            "blockCanaryExDebug"          : "com.letv.sarrsdesktop:BlockCanaryExJRT:${blockCanaryEx}",
+            "blockCanaryExRelease"        : "com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:${blockCanaryEx}",
+            "blockCanaryExTest"           : "com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:${blockCanaryEx}",
+            //test
+            "junit"                       : "junit:junit:4.12",
+            "aspectj"                     : 'org.aspectj:aspectjrt:1.8.10',
+    ]
+}
